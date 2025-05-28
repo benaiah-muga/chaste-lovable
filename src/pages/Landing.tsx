@@ -3,151 +3,186 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Bot, Shield, Zap, BarChart3, Upload, Settings } from 'lucide-react';
+import { ArrowRight, Bot, Shield, Zap, BarChart3, Upload, Settings, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import AnimatedChat from '@/components/AnimatedChat';
 
 const Landing = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gray-950 dark">
+      {/* Animated Background */}
+      <div className="fixed inset-0 bg-gradient-to-br from-gray-950 via-gray-900 to-blue-950 opacity-50"></div>
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-gray-950 to-gray-950"></div>
+      
       {/* Header */}
-      <header className="container mx-auto px-6 py-4">
+      <header className="relative container mx-auto px-6 py-4 z-10">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Bot className="w-8 h-8 text-blue-600" />
-            <span className="text-2xl font-bold text-gray-900">ChatSaaS</span>
+          <div className="flex items-center space-x-2 group">
+            <div className="relative">
+              <Bot className="w-8 h-8 text-neon-blue group-hover:animate-glow transition-all duration-300" />
+              <div className="absolute inset-0 bg-neon-blue/20 rounded-full blur-md group-hover:blur-lg transition-all duration-300"></div>
+            </div>
+            <span className="text-2xl font-bold font-display text-white bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple bg-clip-text text-transparent">
+              ChatSaaS
+            </span>
           </div>
           <div className="flex items-center space-x-4">
             <Link to="/login">
-              <Button variant="ghost">Login</Button>
+              <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-gray-800/50 border border-gray-700/50 hover:border-neon-blue/50 transition-all duration-300">
+                Login
+              </Button>
             </Link>
             <Link to="/signup">
-              <Button>Get Started</Button>
+              <Button className="bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white shadow-lg hover:shadow-neon-blue/25 transition-all duration-300">
+                Get Started
+              </Button>
             </Link>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-6 py-20 text-center">
-        <Badge className="mb-4 bg-blue-100 text-blue-800">
-          🚀 Self-Serve RAG Chatbot Platform
-        </Badge>
-        <h1 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
-          Deploy AI Customer Support
-          <br />
-          <span className="text-blue-600">In Minutes, Not Months</span>
-        </h1>
-        <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-          Upload your documents, customize your chatbot, and embed intelligent customer support on your website. 
-          No approval needed - start serving customers with AI-powered answers instantly.
-        </p>
-        <div className="flex items-center justify-center space-x-4">
-          <Link to="/signup">
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
-              Start Free Trial
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </Link>
-          <Button size="lg" variant="outline">
-            View Demo
-          </Button>
+      <section className="relative container mx-auto px-6 py-20 z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="text-left space-y-8 animate-fadeInUp">
+            <Badge className="bg-gradient-to-r from-neon-blue/10 to-neon-purple/10 text-neon-blue border border-neon-blue/20 hover:bg-gradient-to-r hover:from-neon-blue/20 hover:to-neon-purple/20 transition-all duration-300">
+              <Sparkles className="w-4 h-4 mr-2" />
+              Self-Serve RAG Chatbot Platform
+            </Badge>
+            
+            <h1 className="text-5xl lg:text-6xl font-bold font-display text-white leading-tight">
+              Deploy AI Customer Support
+              <br />
+              <span className="bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple bg-clip-text text-transparent animate-gradient bg-300%">
+                In Minutes, Not Months
+              </span>
+            </h1>
+            
+            <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
+              Upload your documents, customize your chatbot, and embed intelligent customer support on your website. 
+              No approval needed - start serving customers with AI-powered answers instantly.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
+              <Link to="/signup">
+                <Button size="lg" className="bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white shadow-2xl hover:shadow-neon-blue/25 transform hover:scale-105 transition-all duration-300 group">
+                  Start Free Trial
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                </Button>
+              </Link>
+              <Button size="lg" variant="outline" className="border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800/50 hover:border-neon-blue/50 transition-all duration-300">
+                View Demo
+              </Button>
+            </div>
+          </div>
+
+          {/* Right Content - Animated Chat */}
+          <div className="flex justify-center lg:justify-end animate-slideInRight">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 rounded-3xl blur-3xl"></div>
+              <AnimatedChat />
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Features Grid */}
-      <section className="container mx-auto px-6 py-20">
-        <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-          Everything You Need for AI Customer Support
-        </h2>
+      <section className="relative container mx-auto px-6 py-20 z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold font-display text-white mb-4">
+            Everything You Need for AI Customer Support
+          </h2>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            Built for modern businesses that want to scale their support without scaling their team
+          </p>
+        </div>
+        
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <Zap className="w-8 h-8 text-blue-600 mb-2" />
-              <CardTitle>Instant Onboarding</CardTitle>
-              <CardDescription>
-                Upload docs, customize, and deploy in under 5 minutes
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <Bot className="w-8 h-8 text-green-600 mb-2" />
-              <CardTitle>Smart LLM Fallback</CardTitle>
-              <CardDescription>
-                Multi-model system ensures 99.9% uptime with cost optimization
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <Shield className="w-8 h-8 text-purple-600 mb-2" />
-              <CardTitle>Privacy First</CardTitle>
-              <CardDescription>
-                Full data control with delete rights and export capabilities
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <Upload className="w-8 h-8 text-orange-600 mb-2" />
-              <CardTitle>Document RAG</CardTitle>
-              <CardDescription>
-                Upload PDFs, FAQs, and docs for context-aware responses
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <BarChart3 className="w-8 h-8 text-red-600 mb-2" />
-              <CardTitle>Analytics Dashboard</CardTitle>
-              <CardDescription>
-                Track queries, top questions, and performance metrics
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <Settings className="w-8 h-8 text-indigo-600 mb-2" />
-              <CardTitle>Full Customization</CardTitle>
-              <CardDescription>
-                Brand colors, tone, welcome messages, and restricted topics
-              </CardDescription>
-            </CardHeader>
-          </Card>
+          {[
+            {
+              icon: Zap,
+              title: "Instant Onboarding",
+              description: "Upload docs, customize, and deploy in under 5 minutes",
+              color: "from-yellow-400 to-orange-500"
+            },
+            {
+              icon: Bot,
+              title: "Smart LLM Fallback",
+              description: "Multi-model system ensures 99.9% uptime with cost optimization",
+              color: "from-green-400 to-blue-500"
+            },
+            {
+              icon: Shield,
+              title: "Privacy First",
+              description: "Full data control with delete rights and export capabilities",
+              color: "from-purple-400 to-pink-500"
+            },
+            {
+              icon: Upload,
+              title: "Document RAG",
+              description: "Upload PDFs, FAQs, and docs for context-aware responses",
+              color: "from-orange-400 to-red-500"
+            },
+            {
+              icon: BarChart3,
+              title: "Analytics Dashboard",
+              description: "Track queries, top questions, and performance metrics",
+              color: "from-red-400 to-pink-500"
+            },
+            {
+              icon: Settings,
+              title: "Full Customization",
+              description: "Brand colors, tone, welcome messages, and restricted topics",
+              color: "from-indigo-400 to-purple-500"
+            }
+          ].map((feature, index) => (
+            <Card key={index} className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300 group hover:shadow-2xl hover:shadow-neon-blue/10 animate-fadeInUp" style={{ animationDelay: `${index * 0.1}s` }}>
+              <CardHeader>
+                <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} p-3 mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <feature.icon className="w-6 h-6 text-white" />
+                </div>
+                <CardTitle className="text-white font-display group-hover:text-neon-blue transition-colors duration-300">
+                  {feature.title}
+                </CardTitle>
+                <CardDescription className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                  {feature.description}
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          ))}
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-indigo-600 py-20">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Ready to Transform Your Customer Support?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8">
-            Join hundreds of businesses already using AI-powered customer support
-          </p>
-          <Link to="/signup">
-            <Button size="lg" variant="secondary">
-              Start Your Free Trial
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </Link>
+      <section className="relative py-20 z-10">
+        <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-cyan/10"></div>
+        <div className="relative container mx-auto px-6 text-center">
+          <div className="max-w-4xl mx-auto space-y-8">
+            <h2 className="text-4xl lg:text-5xl font-bold font-display text-white">
+              Ready to Transform Your Customer Support?
+            </h2>
+            <p className="text-xl text-gray-300">
+              Join hundreds of businesses already using AI-powered customer support
+            </p>
+            <Link to="/signup">
+              <Button size="lg" className="bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white shadow-2xl hover:shadow-neon-blue/25 transform hover:scale-105 transition-all duration-300 group">
+                Start Your Free Trial
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 py-12">
+      <footer className="relative bg-gray-950/80 backdrop-blur-xl border-t border-gray-800/50 py-12 z-10">
         <div className="container mx-auto px-6 text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
-            <Bot className="w-6 h-6 text-blue-400" />
-            <span className="text-xl font-bold text-white">ChatSaaS</span>
+            <Bot className="w-6 h-6 text-neon-blue" />
+            <span className="text-xl font-bold font-display text-white">ChatSaaS</span>
           </div>
-          <p className="text-gray-400">© 2024 ChatSaaS. All rights reserved.</p>
+          <p className="text-gray-500">© 2024 ChatSaaS. All rights reserved.</p>
         </div>
       </footer>
     </div>
