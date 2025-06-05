@@ -25,7 +25,7 @@ const Landing = () => {
               <div className="absolute inset-0 bg-neon-blue/20 rounded-full blur-md group-hover:blur-lg transition-all duration-300"></div>
             </div>
             <span className="text-2xl font-bold font-display text-white bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple bg-clip-text text-transparent">
-              Chaste
+              Chaste AI
             </span>
           </div>
           
@@ -43,6 +43,9 @@ const Landing = () => {
             <Link to="/pricing" className="text-gray-300 hover:text-neon-blue transition-colors duration-300">
               Pricing
             </Link>
+            <Link to="/support" className="text-gray-300 hover:text-neon-blue transition-colors duration-300">
+              Support
+            </Link>
           </nav>
 
           <div className="flex items-center space-x-4">
@@ -53,7 +56,7 @@ const Landing = () => {
             </Link>
             <Link to="/signup">
               <Button className="bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white shadow-lg hover:shadow-neon-blue/25 transition-all duration-300">
-                Get Started
+                Start for Free
               </Button>
             </Link>
           </div>
@@ -65,37 +68,32 @@ const Landing = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="text-left space-y-8 animate-fadeInUp">
-            <Badge className="bg-gradient-to-r from-neon-blue/10 to-neon-purple/10 text-neon-blue border border-neon-blue/20 hover:bg-gradient-to-r hover:from-neon-blue/20 hover:to-neon-purple/20 transition-all duration-300">
-              <Sparkles className="w-4 h-4 mr-2" />
-              Next-Gen Customer Support Platform
-            </Badge>
-            
             <h1 className="text-5xl lg:text-6xl font-bold font-display text-white leading-tight">
-              <TypewriterText 
-                text="Launch Smart AI Support"
-                speed={100}
-                delay={500}
-                className="bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple bg-clip-text text-transparent"
-              />
-              <br />
-              <span className="text-white">
-                <TypewriterText 
-                  text="In Hours, Not Weeks"
-                  speed={80}
-                  delay={2500}
-                />
+              <span className="bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple bg-clip-text text-transparent">
+                Deploy Smart AI Support
               </span>
+              <br />
+              <span className="text-white">In </span>
+              <TypewriterText 
+                text="Minutes"
+                speed={150}
+                delay={1000}
+                loop={true}
+                pauseDuration={3000}
+                className="text-neon-cyan"
+              />
+              <span className="text-white">, Not Hours</span>
             </h1>
             
             <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
               Transform your customer experience with AI that actually understands your business. 
-              Upload your knowledge base, customize your assistant, and deploy intelligent support that scales.
+              Upload your knowledge base, customize your assistant, and deploy intelligent support that scales instantly.
             </p>
             
             <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
               <Link to="/signup">
                 <Button size="lg" className="bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white shadow-2xl hover:shadow-neon-blue/25 transform hover:scale-105 transition-all duration-300 group">
-                  Start Your Free Trial
+                  Start for Free
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
               </Link>
@@ -131,38 +129,33 @@ const Landing = () => {
             {
               icon: Zap,
               title: "Lightning Fast Setup",
-              description: "Go from zero to deployed AI support in under 10 minutes",
-              color: "from-yellow-500 to-orange-600"
+              description: "Go from zero to deployed AI support in under 10 minutes"
             },
             {
               icon: Upload,
               title: "Smart Document Processing",
-              description: "Upload PDFs, docs, and FAQs for context-aware responses",
-              color: "from-blue-500 to-cyan-600"
+              description: "Upload PDFs, docs, and FAQs for context-aware responses"
             },
             {
               icon: Shield,
               title: "Enterprise Security",
-              description: "Bank-level encryption with full data control and compliance",
-              color: "from-green-500 to-emerald-600"
+              description: "Bank-level encryption with full data control and compliance"
             },
             {
               icon: BarChart3,
               title: "Advanced Analytics",
-              description: "Deep insights into customer queries and satisfaction metrics",
-              color: "from-purple-500 to-pink-600"
+              description: "Deep insights into customer queries and satisfaction metrics"
             },
             {
               icon: Settings,
               title: "Total Customization",
-              description: "Brand voice, appearance, and behavior that matches your company",
-              color: "from-indigo-500 to-purple-600"
+              description: "Brand voice, appearance, and behavior that matches your company"
             }
           ].map((feature, index) => (
             <Card key={index} className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300 group hover:shadow-2xl hover:shadow-neon-blue/10 animate-fadeInUp" style={{ animationDelay: `${index * 0.1}s` }}>
               <CardHeader>
-                <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} p-3 mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <feature.icon className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-lg bg-gray-800/50 border border-gray-700/50 p-3 mb-4 group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
+                  <feature.icon className="w-6 h-6 text-neon-blue" />
                 </div>
                 <CardTitle className="text-white font-display group-hover:text-neon-blue transition-colors duration-300">
                   {feature.title}
@@ -189,7 +182,7 @@ const Landing = () => {
             </p>
             <Link to="/signup">
               <Button size="lg" className="bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white shadow-2xl hover:shadow-neon-blue/25 transform hover:scale-105 transition-all duration-300 group">
-                Start Your Free Trial Today
+                Start for Free Today
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </Link>
@@ -199,12 +192,52 @@ const Landing = () => {
 
       {/* Footer */}
       <footer className="relative bg-gray-950/80 backdrop-blur-xl border-t border-gray-800/50 py-12 z-10">
-        <div className="container mx-auto px-6 text-center">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <Bot className="w-6 h-6 text-neon-blue" />
-            <span className="text-xl font-bold font-display text-white">Chaste</span>
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-2">
+                <Bot className="w-6 h-6 text-neon-blue" />
+                <span className="text-xl font-bold font-display text-white">Chaste AI</span>
+              </div>
+              <p className="text-gray-400 text-sm">
+                Deploy intelligent customer support in minutes, not hours. Transform your customer experience with AI that understands your business.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-white font-semibold mb-4">Product</h3>
+              <ul className="space-y-2">
+                <li><Link to="/features" className="text-gray-400 hover:text-neon-blue transition-colors">Features</Link></li>
+                <li><Link to="/pricing" className="text-gray-400 hover:text-neon-blue transition-colors">Pricing</Link></li>
+                <li><Link to="/solutions" className="text-gray-400 hover:text-neon-blue transition-colors">Solutions</Link></li>
+                <li><Link to="/integrations" className="text-gray-400 hover:text-neon-blue transition-colors">Integrations</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-white font-semibold mb-4">Company</h3>
+              <ul className="space-y-2">
+                <li><Link to="/about" className="text-gray-400 hover:text-neon-blue transition-colors">About</Link></li>
+                <li><Link to="/blog" className="text-gray-400 hover:text-neon-blue transition-colors">Blog</Link></li>
+                <li><Link to="/careers" className="text-gray-400 hover:text-neon-blue transition-colors">Careers</Link></li>
+                <li><Link to="/contact" className="text-gray-400 hover:text-neon-blue transition-colors">Contact</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-white font-semibold mb-4">Support</h3>
+              <ul className="space-y-2">
+                <li><Link to="/support" className="text-gray-400 hover:text-neon-blue transition-colors">Help Center</Link></li>
+                <li><Link to="/docs" className="text-gray-400 hover:text-neon-blue transition-colors">Documentation</Link></li>
+                <li><Link to="/status" className="text-gray-400 hover:text-neon-blue transition-colors">System Status</Link></li>
+                <li><Link to="/privacy" className="text-gray-400 hover:text-neon-blue transition-colors">Privacy Policy</Link></li>
+              </ul>
+            </div>
           </div>
-          <p className="text-gray-500">© 2024 Chaste. All rights reserved.</p>
+          
+          <div className="border-t border-gray-800/50 mt-8 pt-8 text-center">
+            <p className="text-gray-500">© 2024 Chaste AI. All rights reserved.</p>
+          </div>
         </div>
       </footer>
 

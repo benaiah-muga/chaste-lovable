@@ -6,17 +6,22 @@ interface TypewriterTextProps {
   speed?: number;
   delay?: number;
   className?: string;
+  loop?: boolean;
+  pauseDuration?: number;
 }
 
 const TypewriterText: React.FC<TypewriterTextProps> = ({ 
   text, 
   speed = 100, 
   delay = 0,
-  className = ""
+  className = "",
+  loop = false,
+  pauseDuration = 2000
 }) => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -29,21 +34,36 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   useEffect(() => {
     if (!isTyping) return;
 
-    if (currentIndex < text.length) {
+    if (!isDeleting && currentIndex < text.length) {
       const timer = setTimeout(() => {
         setDisplayText(prev => prev + text[currentIndex]);
         setCurrentIndex(prev => prev + 1);
       }, speed);
 
       return () => clearTimeout(timer);
+    } else if (!isDeleting && currentIndex === text.length && loop) {
+      const timer = setTimeout(() => {
+        setIsDeleting(true);
+      }, pauseDuration);
+
+      return () => clearTimeout(timer);
+    } else if (isDeleting && currentIndex > 0) {
+      const timer = setTimeout(() => {
+        setDisplayText(prev => prev.slice(0, -1));
+        setCurrentIndex(prev => prev - 1);
+      }, speed / 2);
+
+      return () => clearTimeout(timer);
+    } else if (isDeleting && currentIndex === 0) {
+      setIsDeleting(false);
     }
-  }, [currentIndex, text, speed, isTyping]);
+  }, [currentIndex, text, speed, isTyping, isDeleting, loop, pauseDuration]);
 
   return (
     <span className={className}>
       {displayText}
-      {isTyping && currentIndex < text.length && (
-        <span className="animate-blink text-neon-blue">|</span>
+      {isTyping && (
+        <span className="animate-pulse text-neon-blue">|</span>
       )}
     </span>
   );
