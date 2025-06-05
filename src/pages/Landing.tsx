@@ -3,9 +3,11 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Bot, Shield, Zap, BarChart3, Upload, Settings, Sparkles } from 'lucide-react';
+import { ArrowRight, Bot, Shield, Zap, BarChart3, Upload, Settings, Sparkles, Menu } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AnimatedChat from '@/components/AnimatedChat';
+import { ChatInterface } from '@/components/ChatInterface';
+import TypewriterText from '@/components/TypewriterText';
 
 const Landing = () => {
   return (
@@ -23,9 +25,26 @@ const Landing = () => {
               <div className="absolute inset-0 bg-neon-blue/20 rounded-full blur-md group-hover:blur-lg transition-all duration-300"></div>
             </div>
             <span className="text-2xl font-bold font-display text-white bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple bg-clip-text text-transparent">
-              ChatSaaS
+              Chaste
             </span>
           </div>
+          
+          {/* Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link to="/" className="text-gray-300 hover:text-neon-blue transition-colors duration-300">
+              Home
+            </Link>
+            <Link to="/features" className="text-gray-300 hover:text-neon-blue transition-colors duration-300">
+              Features
+            </Link>
+            <Link to="/solutions" className="text-gray-300 hover:text-neon-blue transition-colors duration-300">
+              Solutions
+            </Link>
+            <Link to="/pricing" className="text-gray-300 hover:text-neon-blue transition-colors duration-300">
+              Pricing
+            </Link>
+          </nav>
+
           <div className="flex items-center space-x-4">
             <Link to="/login">
               <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-gray-800/50 border border-gray-700/50 hover:border-neon-blue/50 transition-all duration-300">
@@ -48,31 +67,40 @@ const Landing = () => {
           <div className="text-left space-y-8 animate-fadeInUp">
             <Badge className="bg-gradient-to-r from-neon-blue/10 to-neon-purple/10 text-neon-blue border border-neon-blue/20 hover:bg-gradient-to-r hover:from-neon-blue/20 hover:to-neon-purple/20 transition-all duration-300">
               <Sparkles className="w-4 h-4 mr-2" />
-              Self-Serve RAG Chatbot Platform
+              Next-Gen Customer Support Platform
             </Badge>
             
             <h1 className="text-5xl lg:text-6xl font-bold font-display text-white leading-tight">
-              Deploy AI Customer Support
+              <TypewriterText 
+                text="Launch Smart AI Support"
+                speed={100}
+                delay={500}
+                className="bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple bg-clip-text text-transparent"
+              />
               <br />
-              <span className="bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple bg-clip-text text-transparent animate-gradient bg-300%">
-                In Minutes, Not Months
+              <span className="text-white">
+                <TypewriterText 
+                  text="In Hours, Not Weeks"
+                  speed={80}
+                  delay={2500}
+                />
               </span>
             </h1>
             
             <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
-              Upload your documents, customize your chatbot, and embed intelligent customer support on your website. 
-              No approval needed - start serving customers with AI-powered answers instantly.
+              Transform your customer experience with AI that actually understands your business. 
+              Upload your knowledge base, customize your assistant, and deploy intelligent support that scales.
             </p>
             
             <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
               <Link to="/signup">
                 <Button size="lg" className="bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white shadow-2xl hover:shadow-neon-blue/25 transform hover:scale-105 transition-all duration-300 group">
-                  Start Free Trial
+                  Start Your Free Trial
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
               </Link>
               <Button size="lg" variant="outline" className="border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800/50 hover:border-neon-blue/50 transition-all duration-300">
-                View Demo
+                Watch Demo
               </Button>
             </div>
           </div>
@@ -91,10 +119,10 @@ const Landing = () => {
       <section className="relative container mx-auto px-6 py-20 z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold font-display text-white mb-4">
-            Everything You Need for AI Customer Support
+            Everything You Need for Intelligent Support
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Built for modern businesses that want to scale their support without scaling their team
+            Designed for businesses that want to provide exceptional customer service at scale
           </p>
         </div>
         
@@ -102,39 +130,33 @@ const Landing = () => {
           {[
             {
               icon: Zap,
-              title: "Instant Onboarding",
-              description: "Upload docs, customize, and deploy in under 5 minutes",
-              color: "from-yellow-400 to-orange-500"
-            },
-            {
-              icon: Bot,
-              title: "Smart LLM Fallback",
-              description: "Multi-model system ensures 99.9% uptime with cost optimization",
-              color: "from-green-400 to-blue-500"
-            },
-            {
-              icon: Shield,
-              title: "Privacy First",
-              description: "Full data control with delete rights and export capabilities",
-              color: "from-purple-400 to-pink-500"
+              title: "Lightning Fast Setup",
+              description: "Go from zero to deployed AI support in under 10 minutes",
+              color: "from-yellow-500 to-orange-600"
             },
             {
               icon: Upload,
-              title: "Document RAG",
-              description: "Upload PDFs, FAQs, and docs for context-aware responses",
-              color: "from-orange-400 to-red-500"
+              title: "Smart Document Processing",
+              description: "Upload PDFs, docs, and FAQs for context-aware responses",
+              color: "from-blue-500 to-cyan-600"
+            },
+            {
+              icon: Shield,
+              title: "Enterprise Security",
+              description: "Bank-level encryption with full data control and compliance",
+              color: "from-green-500 to-emerald-600"
             },
             {
               icon: BarChart3,
-              title: "Analytics Dashboard",
-              description: "Track queries, top questions, and performance metrics",
-              color: "from-red-400 to-pink-500"
+              title: "Advanced Analytics",
+              description: "Deep insights into customer queries and satisfaction metrics",
+              color: "from-purple-500 to-pink-600"
             },
             {
               icon: Settings,
-              title: "Full Customization",
-              description: "Brand colors, tone, welcome messages, and restricted topics",
-              color: "from-indigo-400 to-purple-500"
+              title: "Total Customization",
+              description: "Brand voice, appearance, and behavior that matches your company",
+              color: "from-indigo-500 to-purple-600"
             }
           ].map((feature, index) => (
             <Card key={index} className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300 group hover:shadow-2xl hover:shadow-neon-blue/10 animate-fadeInUp" style={{ animationDelay: `${index * 0.1}s` }}>
@@ -160,14 +182,14 @@ const Landing = () => {
         <div className="relative container mx-auto px-6 text-center">
           <div className="max-w-4xl mx-auto space-y-8">
             <h2 className="text-4xl lg:text-5xl font-bold font-display text-white">
-              Ready to Transform Your Customer Support?
+              Ready to Transform Your Customer Experience?
             </h2>
             <p className="text-xl text-gray-300">
-              Join hundreds of businesses already using AI-powered customer support
+              Join innovative businesses already using AI to deliver exceptional support
             </p>
             <Link to="/signup">
               <Button size="lg" className="bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white shadow-2xl hover:shadow-neon-blue/25 transform hover:scale-105 transition-all duration-300 group">
-                Start Your Free Trial
+                Start Your Free Trial Today
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </Link>
@@ -180,11 +202,14 @@ const Landing = () => {
         <div className="container mx-auto px-6 text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Bot className="w-6 h-6 text-neon-blue" />
-            <span className="text-xl font-bold font-display text-white">ChatSaaS</span>
+            <span className="text-xl font-bold font-display text-white">Chaste</span>
           </div>
-          <p className="text-gray-500">© 2024 ChatSaaS. All rights reserved.</p>
+          <p className="text-gray-500">© 2024 Chaste. All rights reserved.</p>
         </div>
       </footer>
+
+      {/* Chat Interface */}
+      <ChatInterface />
     </div>
   );
 };

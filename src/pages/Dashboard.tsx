@@ -1,34 +1,48 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Bot, BarChart3, Settings, Upload, Users, MessageSquare, Shield, LogOut } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Bot, BarChart3, Settings, Upload, Users, MessageSquare, Shield, LogOut, Sparkles, ArrowRight, Zap, TrendingUp } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  const [showOnboarding, setShowOnboarding] = useState(true);
+  const navigate = useNavigate();
+
   const stats = {
     totalQueries: 1247,
     activeUsers: 89,
     documentsUploaded: 12,
-    responseTime: '1.2s'
+    responseTime: '1.2s',
+    satisfactionRate: '96%',
+    monthlyGrowth: '+24%'
+  };
+
+  const handleStartOnboarding = () => {
+    setShowOnboarding(false);
+    navigate('/onboarding');
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-950 dark">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
+      <header className="bg-gray-900/80 backdrop-blur-xl border-b border-gray-800/50 px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <Bot className="w-8 h-8 text-blue-600" />
-              <span className="text-2xl font-bold text-gray-900">ChatSaaS</span>
+              <Bot className="w-8 h-8 text-neon-blue animate-glow" />
+              <span className="text-2xl font-bold text-white font-display">Chaste</span>
             </div>
-            <Badge className="bg-green-100 text-green-800">Trial Active</Badge>
+            <Badge className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-400 border border-green-500/30">
+              <Sparkles className="w-3 h-3 mr-1" />
+              Pro Plan Active
+            </Badge>
           </div>
           <div className="flex items-center space-x-4">
-            <span className="text-sm text-gray-600">Acme Corp</span>
-            <Button variant="ghost" size="sm">
+            <span className="text-sm text-gray-400">Acme Corp</span>
+            <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white hover:bg-gray-800/50">
               <LogOut className="w-4 h-4 mr-2" />
               Logout
             </Button>
@@ -38,21 +52,25 @@ const Dashboard = () => {
 
       <div className="flex">
         {/* Sidebar */}
-        <aside className="w-64 bg-white border-r border-gray-200 min-h-screen">
+        <aside className="w-64 bg-gray-900/50 backdrop-blur-xl border-r border-gray-800/50 min-h-screen">
           <nav className="p-4 space-y-2">
-            <Link to="/dashboard" className="flex items-center space-x-3 px-3 py-2 bg-blue-50 text-blue-700 rounded-lg">
+            <Link to="/dashboard" className="flex items-center space-x-3 px-3 py-2 bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 text-neon-blue rounded-lg border border-neon-blue/30">
               <BarChart3 className="w-5 h-5" />
               <span>Dashboard</span>
             </Link>
-            <Link to="/dashboard/customize" className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
+            <Link to="/dashboard/customize" className="flex items-center space-x-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-all duration-300">
               <Settings className="w-5 h-5" />
               <span>Customize</span>
             </Link>
-            <Link to="/dashboard/documents" className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
+            <Link to="/dashboard/documents" className="flex items-center space-x-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-all duration-300">
               <Upload className="w-5 h-5" />
-              <span>Documents</span>
+              <span>Knowledge Base</span>
             </Link>
-            <Link to="/dashboard/privacy" className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
+            <Link to="/dashboard/analytics" className="flex items-center space-x-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-all duration-300">
+              <TrendingUp className="w-5 h-5" />
+              <span>Analytics</span>
+            </Link>
+            <Link to="/dashboard/privacy" className="flex items-center space-x-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-all duration-300">
               <Shield className="w-5 h-5" />
               <span>Privacy & Data</span>
             </Link>
@@ -62,56 +80,101 @@ const Dashboard = () => {
         {/* Main Content */}
         <main className="flex-1 p-6">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Dashboard</h1>
-            <p className="text-gray-600">Monitor your chatbot performance and customer interactions</p>
+            <h1 className="text-3xl font-bold text-white mb-2 font-display">Welcome to Your AI Command Center</h1>
+            <p className="text-gray-400">Monitor, customize, and optimize your intelligent customer support</p>
           </div>
 
+          {/* Onboarding Prompt */}
+          {showOnboarding && (
+            <Card className="mb-8 bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-cyan/10 border border-neon-blue/30 backdrop-blur-xl">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 bg-gradient-to-r from-neon-blue to-neon-purple rounded-lg flex items-center justify-center">
+                      <Sparkles className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-white">Let's Get Your AI Assistant Ready!</CardTitle>
+                      <CardDescription className="text-gray-300">
+                        It only takes 5 minutes to set up your intelligent customer support. We'll guide you through every step.
+                      </CardDescription>
+                    </div>
+                  </div>
+                  <Button 
+                    onClick={handleStartOnboarding}
+                    className="bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white shadow-lg hover:shadow-neon-blue/25 transition-all duration-300 group"
+                  >
+                    Start Setup
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </Button>
+                </div>
+              </CardHeader>
+            </Card>
+          )}
+
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-600">Total Queries</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-400">Total Conversations</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center space-x-2">
-                  <MessageSquare className="w-5 h-5 text-blue-600" />
-                  <span className="text-2xl font-bold">{stats.totalQueries.toLocaleString()}</span>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <MessageSquare className="w-5 h-5 text-neon-blue" />
+                    <span className="text-2xl font-bold text-white">{stats.totalQueries.toLocaleString()}</span>
+                  </div>
+                  <Badge className="bg-green-500/20 text-green-400 border border-green-500/30">
+                    {stats.monthlyGrowth}
+                  </Badge>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-600">Active Users</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-400">Active Users</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center space-x-2">
-                  <Users className="w-5 h-5 text-green-600" />
-                  <span className="text-2xl font-bold">{stats.activeUsers}</span>
+                  <Users className="w-5 h-5 text-green-500" />
+                  <span className="text-2xl font-bold text-white">{stats.activeUsers}</span>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-600">Documents</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-400">Knowledge Documents</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center space-x-2">
-                  <Upload className="w-5 h-5 text-purple-600" />
-                  <span className="text-2xl font-bold">{stats.documentsUploaded}</span>
+                  <Upload className="w-5 h-5 text-purple-500" />
+                  <span className="text-2xl font-bold text-white">{stats.documentsUploaded}</span>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-600">Avg Response</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-400">Avg Response Time</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center space-x-2">
-                  <Bot className="w-5 h-5 text-orange-600" />
-                  <span className="text-2xl font-bold">{stats.responseTime}</span>
+                  <Zap className="w-5 h-5 text-yellow-500" />
+                  <span className="text-2xl font-bold text-white">{stats.responseTime}</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-gray-400">Satisfaction Rate</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center space-x-2">
+                  <TrendingUp className="w-5 h-5 text-emerald-500" />
+                  <span className="text-2xl font-bold text-white">{stats.satisfactionRate}</span>
                 </div>
               </CardContent>
             </Card>
@@ -119,74 +182,74 @@ const Dashboard = () => {
 
           {/* Quick Actions */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <Card>
+            <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50">
               <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
-                <CardDescription>Common tasks for your chatbot</CardDescription>
+                <CardTitle className="text-white">Quick Actions</CardTitle>
+                <CardDescription className="text-gray-400">Manage your AI assistant</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
-                <Button className="w-full justify-start" variant="outline">
+                <Button className="w-full justify-start bg-gray-800/50 hover:bg-gray-700/50 text-white border border-gray-700/50 hover:border-neon-blue/50 transition-all duration-300" variant="outline">
                   <Upload className="w-4 h-4 mr-2" />
                   Upload New Documents
                 </Button>
-                <Button className="w-full justify-start" variant="outline">
+                <Button className="w-full justify-start bg-gray-800/50 hover:bg-gray-700/50 text-white border border-gray-700/50 hover:border-neon-blue/50 transition-all duration-300" variant="outline">
                   <Settings className="w-4 h-4 mr-2" />
-                  Customize Chatbot
+                  Customize Assistant
                 </Button>
-                <Button className="w-full justify-start" variant="outline">
+                <Button className="w-full justify-start bg-gray-800/50 hover:bg-gray-700/50 text-white border border-gray-700/50 hover:border-neon-blue/50 transition-all duration-300" variant="outline">
                   <Bot className="w-4 h-4 mr-2" />
-                  Test Chatbot
+                  Test Assistant
                 </Button>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50">
               <CardHeader>
-                <CardTitle>Recent Activity</CardTitle>
-                <CardDescription>Latest interactions and updates</CardDescription>
+                <CardTitle className="text-white">Recent Activity</CardTitle>
+                <CardDescription className="text-gray-400">Latest interactions and updates</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="text-sm">
-                  <p className="font-medium">Document uploaded</p>
-                  <p className="text-gray-600">FAQ.pdf added to knowledge base</p>
-                  <p className="text-xs text-gray-400">2 hours ago</p>
+              <CardContent className="space-y-4">
+                <div className="border-l-2 border-neon-blue pl-4">
+                  <p className="font-medium text-white">Document uploaded</p>
+                  <p className="text-gray-400 text-sm">FAQ.pdf added to knowledge base</p>
+                  <p className="text-xs text-gray-500">2 hours ago</p>
                 </div>
-                <div className="text-sm">
-                  <p className="font-medium">45 new queries</p>
-                  <p className="text-gray-600">Customer support questions answered</p>
-                  <p className="text-xs text-gray-400">Today</p>
+                <div className="border-l-2 border-green-500 pl-4">
+                  <p className="font-medium text-white">45 new conversations</p>
+                  <p className="text-gray-400 text-sm">Customer support questions answered</p>
+                  <p className="text-xs text-gray-500">Today</p>
                 </div>
-                <div className="text-sm">
-                  <p className="font-medium">Chatbot customized</p>
-                  <p className="text-gray-600">Updated welcome message and colors</p>
-                  <p className="text-xs text-gray-400">Yesterday</p>
+                <div className="border-l-2 border-purple-500 pl-4">
+                  <p className="font-medium text-white">Assistant customized</p>
+                  <p className="text-gray-400 text-sm">Updated welcome message and branding</p>
+                  <p className="text-xs text-gray-500">Yesterday</p>
                 </div>
               </CardContent>
             </Card>
           </div>
 
           {/* Embed Code */}
-          <Card>
+          <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50">
             <CardHeader>
-              <CardTitle>Embed Code</CardTitle>
-              <CardDescription>Add this code to your website to display the chatbot</CardDescription>
+              <CardTitle className="text-white">Integration Code</CardTitle>
+              <CardDescription className="text-gray-400">Add this code to your website to display the AI assistant</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="bg-gray-900 p-4 rounded-lg">
-                <code className="text-green-400 text-sm">
+              <div className="bg-gray-950/80 p-4 rounded-lg border border-gray-800/50">
+                <code className="text-green-400 text-sm font-mono">
 {`<script>
   (function(d,s,id){
     var js,fjs=d.getElementsByTagName(s)[0];
     if(d.getElementById(id))return;
     js=d.createElement(s);js.id=id;
-    js.src="https://chatsaas.com/embed/chatbot-123.js";
+    js.src="https://chaste.ai/embed/assistant-${Math.random().toString(36).substr(2, 9)}.js";
     fjs.parentNode.insertBefore(js,fjs);
-  })(document,"script","chatsaas-embed");
+  })(document,"script","chaste-embed");
 </script>`}
                 </code>
               </div>
-              <Button className="mt-4" variant="outline">
-                Copy Code
+              <Button className="mt-4 bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue" variant="outline">
+                Copy Integration Code
               </Button>
             </CardContent>
           </Card>
