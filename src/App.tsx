@@ -12,6 +12,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Onboarding from "./pages/Onboarding";
 import Dashboard from "./pages/Dashboard";
+import CustomizeDashboard from "./pages/CustomizeDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import PrivacyDashboard from "./pages/PrivacyDashboard";
 import NotFound from "./pages/NotFound";
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/customize" element={<CustomizeDashboard />} />
           <Route path="/dashboard/privacy" element={<PrivacyDashboard />} />
           <Route path="/admin" element={<AdminDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
