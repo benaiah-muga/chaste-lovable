@@ -8,8 +8,12 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  LineChart, Line, PieChart, Pie, Cell
+} from 'recharts';
+import { 
   Bot, Users, Settings, AlertTriangle, Search, Eye, Ban, LogOut, 
-  DollarSign, BarChart, FileText, Shield, Globe, Palette,
+  DollarSign, BarChart as BarChartIcon, FileText, Shield, Globe, Palette,
   Database, Cloud, MessageSquare, Mail, Calendar, PlusCircle
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';

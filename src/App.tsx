@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,6 +15,8 @@ import CustomizeDashboard from "./pages/CustomizeDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import PrivacyDashboard from "./pages/PrivacyDashboard";
 import NotFound from "./pages/NotFound";
+import Analytics from "./pages/Analytics";
+import KnowledgeBase from "./pages/KnowledgeBase";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,8 @@ const App = () => (
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/customize" element={<CustomizeDashboard />} />
+          <Route path="/dashboard/analytics" element={<Analytics />} />
+          <Route path="/dashboard/documents" element={<KnowledgeBase />} />
           <Route path="/dashboard/privacy" element={<PrivacyDashboard />} />
           <Route path="/admin" element={<AdminDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
