@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 interface TypewriterTextProps {
-  text: string;
+  texts: string[];
   speed?: number;
   delay?: number;
   className?: string;
@@ -11,7 +11,7 @@ interface TypewriterTextProps {
 }
 
 const TypewriterText: React.FC<TypewriterTextProps> = ({ 
-  text, 
+  texts, 
   speed = 100, 
   delay = 0,
   className = "",
@@ -20,8 +20,11 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
 }) => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  const currentText = texts[currentTextIndex] || '';
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -34,14 +37,14 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   useEffect(() => {
     if (!isTyping) return;
 
-    if (!isDeleting && currentIndex < text.length) {
+    if (!isDeleting && currentIndex < currentText.length) {
       const timer = setTimeout(() => {
-        setDisplayText(prev => prev + text[currentIndex]);
+        setDisplayText(prev => prev + currentText[currentIndex]);
         setCurrentIndex(prev => prev + 1);
       }, speed);
 
       return () => clearTimeout(timer);
-    } else if (!isDeleting && currentIndex === text.length && loop) {
+    } else if (!isDeleting && currentIndex === currentText.length && loop) {
       const timer = setTimeout(() => {
         setIsDeleting(true);
       }, pauseDuration);
@@ -56,8 +59,9 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
       return () => clearTimeout(timer);
     } else if (isDeleting && currentIndex === 0) {
       setIsDeleting(false);
+      setCurrentTextIndex(prev => (prev + 1) % texts.length);
     }
-  }, [currentIndex, text, speed, isTyping, isDeleting, loop, pauseDuration]);
+  }, [currentIndex, currentText, speed, isTyping, isDeleting, loop, pauseDuration, texts.length]);
 
   return (
     <span className={className}>

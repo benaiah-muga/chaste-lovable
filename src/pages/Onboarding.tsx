@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -17,7 +16,8 @@ const Onboarding = () => {
     welcomeMessage: "Hi! I'm here to help you with any questions about our products and services.",
     tone: 'friendly',
     primaryColor: '#3B82F6',
-    name: 'Assistant'
+    name: 'Assistant',
+    supportEmail: ''
   });
   const [uploadedFiles, setUploadedFiles] = useState<string[]>([]);
   const navigate = useNavigate();
@@ -122,6 +122,20 @@ const Onboarding = () => {
                   onChange={(e) => handleConfigChange('name', e.target.value)}
                   placeholder="Assistant"
                 />
+              </div>
+
+              <div>
+                <Label htmlFor="supportEmail">Support Email</Label>
+                <Input
+                  id="supportEmail"
+                  type="email"
+                  value={chatbotConfig.supportEmail}
+                  onChange={(e) => handleConfigChange('supportEmail', e.target.value)}
+                  placeholder="support@yourcompany.com"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Email where complex queries will be forwarded for human assistance
+                </p>
               </div>
 
               <div>
