@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -276,7 +277,7 @@ const Onboarding = () => {
                 >
                   <option value="friendly">Friendly</option>
                   <option value="professional">Professional</option>
-                  <option value="casual">Casual</casual>
+                  <option value="casual">Casual</option>
                   <option value="formal">Formal</option>
                 </select>
               </div>
