@@ -1,5 +1,5 @@
+
 import React from 'react';
-import Navigation from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -68,8 +68,35 @@ const Pricing = () => {
 
   return (
     <div className="min-h-screen bg-gray-950 dark">
-      <Navigation />
-      <div className="pt-20">
+      {/* Header */}
+      <header className="bg-gray-900/80 backdrop-blur-xl border-b border-gray-800/50 px-6 py-4">
+        <div className="container mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <Link to="/" className="flex items-center space-x-2 group">
+              <Bot className="w-8 h-8 text-neon-blue group-hover:animate-glow transition-all duration-300" />
+              <span className="text-2xl font-bold text-white font-display">Chaste AI</span>
+            </Link>
+            <Link to="/" className="inline-flex items-center text-neon-blue hover:text-neon-cyan text-sm transition-colors duration-300">
+              <ArrowLeft className="w-4 h-4 mr-1" />
+              Back to home
+            </Link>
+          </div>
+          <div className="flex items-center space-x-4">
+            <Link to="/login">
+              <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-gray-800/50 border border-gray-700/50 hover:border-neon-blue/50 transition-all duration-300">
+                Login
+              </Button>
+            </Link>
+            <Link to="/signup">
+              <Button className="bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white shadow-lg hover:shadow-neon-blue/25 transition-all duration-300">
+                Start for Free
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      <div className="container mx-auto px-6 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl lg:text-5xl font-bold font-display text-white mb-4">
