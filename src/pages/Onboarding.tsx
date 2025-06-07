@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Bot, Upload, Palette, Code, CheckCircle, User, Heart, Sparkles } from 'lucide-react';
+import { Bot, Upload, Palette, Code, CheckCircle, User, Heart, Sparkles, Phone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 
@@ -18,15 +17,16 @@ const Onboarding = () => {
     firstName: '',
     lastName: '',
     company: '',
-    hearAboutUs: ''
+    hearAboutUs: '',
+    supportEmail: '',
+    supportPhone: '',
+    whatsappNumber: ''
   });
   const [chatbotConfig, setChatbotConfig] = useState({
     welcomeMessage: "Hi! I'm here to help you with any questions about our products and services.",
     tone: 'friendly',
     primaryColor: '#0ea5e9',
-    name: 'Assistant',
-    supportEmail: '',
-    supportPhone: ''
+    name: 'Assistant'
   });
   const [uploadedFiles, setUploadedFiles] = useState<string[]>([]);
   const navigate = useNavigate();
@@ -91,7 +91,7 @@ const Onboarding = () => {
             <div className="text-center">
               <div className="flex justify-center mb-6">
                 <Avatar className="w-24 h-24 border-4 border-neon-blue/30">
-                  <AvatarImage src="/placeholder.svg" alt="Welcome" />
+                  <AvatarImage src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face" alt="Welcome" />
                   <AvatarFallback className="bg-gradient-to-r from-neon-blue to-neon-purple text-white text-2xl">
                     <Heart className="w-8 h-8" />
                   </AvatarFallback>
@@ -134,6 +134,47 @@ const Onboarding = () => {
                   placeholder="Acme Corp"
                   className="bg-gray-800/50 border-gray-700 text-white"
                 />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="supportEmail" className="text-gray-300">Support Email</Label>
+                  <Input
+                    id="supportEmail"
+                    type="email"
+                    value={personalInfo.supportEmail}
+                    onChange={(e) => handlePersonalInfoChange('supportEmail', e.target.value)}
+                    placeholder="support@yourcompany.com"
+                    className="bg-gray-800/50 border-gray-700 text-white"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="supportPhone" className="text-gray-300">Support Phone</Label>
+                  <Input
+                    id="supportPhone"
+                    type="tel"
+                    value={personalInfo.supportPhone}
+                    onChange={(e) => handlePersonalInfoChange('supportPhone', e.target.value)}
+                    placeholder="+1 (555) 123-4567"
+                    className="bg-gray-800/50 border-gray-700 text-white"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="whatsappNumber" className="text-gray-300">WhatsApp Number (Optional)</Label>
+                <Input
+                  id="whatsappNumber"
+                  type="tel"
+                  value={personalInfo.whatsappNumber}
+                  onChange={(e) => handlePersonalInfoChange('whatsappNumber', e.target.value)}
+                  placeholder="+1 (555) 123-4567"
+                  className="bg-gray-800/50 border-gray-700 text-white"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  For WhatsApp integration (Premium plan feature)
+                </p>
               </div>
 
               <div>
@@ -214,38 +255,6 @@ const Onboarding = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="supportEmail" className="text-gray-300">Support Email</Label>
-                  <Input
-                    id="supportEmail"
-                    type="email"
-                    value={chatbotConfig.supportEmail}
-                    onChange={(e) => handleConfigChange('supportEmail', e.target.value)}
-                    placeholder="support@yourcompany.com"
-                    className="bg-gray-800/50 border-gray-700 text-white"
-                  />
-                  <p className="text-xs text-gray-500 mt-1">
-                    Email where complex queries will be forwarded for human assistance
-                  </p>
-                </div>
-
-                <div>
-                  <Label htmlFor="supportPhone" className="text-gray-300">Support Phone</Label>
-                  <Input
-                    id="supportPhone"
-                    type="tel"
-                    value={chatbotConfig.supportPhone}
-                    onChange={(e) => handleConfigChange('supportPhone', e.target.value)}
-                    placeholder="+1 (555) 123-4567"
-                    className="bg-gray-800/50 border-gray-700 text-white"
-                  />
-                  <p className="text-xs text-gray-500 mt-1">
-                    Phone number for urgent customer support
-                  </p>
-                </div>
-              </div>
-
               <div>
                 <Label htmlFor="welcomeMessage" className="text-gray-300">Welcome Message</Label>
                 <Textarea
@@ -267,7 +276,7 @@ const Onboarding = () => {
                 >
                   <option value="friendly">Friendly</option>
                   <option value="professional">Professional</option>
-                  <option value="casual">Casual</option>
+                  <option value="casual">Casual</casual>
                   <option value="formal">Formal</option>
                 </select>
               </div>

@@ -105,8 +105,8 @@ const Pricing = () => {
           <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
             Choose the plan that fits your business needs. All plans include our core AI features and can be upgraded anytime.
           </p>
-          <Badge className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 text-green-400 border border-green-500/20 px-4 py-2">
-            ✨ 14-day free trial on all paid plans
+          <Badge className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-400 border border-green-500/30 px-4 py-2">
+            ✨ Free plan available - no trial needed
           </Badge>
         </div>
 
@@ -156,7 +156,7 @@ const Pricing = () => {
                       ? 'bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white shadow-lg hover:shadow-neon-blue/25' 
                       : 'bg-gray-800/50 hover:bg-gray-700/50 text-white border border-gray-700/50 hover:border-neon-blue/50'
                   } transition-all duration-300`}>
-                    {plan.name === "Free" ? "Get Started" : "Start Free Trial"}
+                    {plan.name === "Free" ? "Get Started" : "Upgrade Now"}
                   </Button>
                 </Link>
               </CardContent>
@@ -217,7 +217,7 @@ const Pricing = () => {
           </p>
           <Link to="/signup">
             <Button size="lg" className="bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white shadow-lg hover:shadow-neon-blue/25 transition-all duration-300">
-              Start Your Free Trial
+              Start for Free
             </Button>
           </Link>
         </div>
