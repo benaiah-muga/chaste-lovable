@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Bot, MessageSquare, X, Send, Mic, MicOff, Zap } from 'lucide-react';
+import { Bot, MessageSquare, X, Send, PhoneCall, Zap } from 'lucide-react';
 
 const ChatInterface = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +17,7 @@ const ChatInterface = () => {
     }
   ]);
   const [isVoiceEnabled, setIsVoiceEnabled] = useState(false);
+  const [isGlowing, setIsGlowing] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -26,6 +27,15 @@ const ChatInterface = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Glowing animation for chat bubble
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsGlowing(prev => !prev);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSendMessage = () => {
     if (message.trim()) {
@@ -63,7 +73,9 @@ const ChatInterface = () => {
       <div className="fixed bottom-6 right-6 z-50">
         <Button
           onClick={() => setIsOpen(true)}
-          className="w-16 h-16 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue shadow-lg hover:shadow-neon-blue/25 transition-all duration-300"
+          className={`w-16 h-16 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue shadow-lg hover:shadow-neon-blue/25 transition-all duration-300 ${
+            isGlowing ? 'shadow-neon-blue/50 animate-pulse' : ''
+          }`}
           size="lg"
         >
           <MessageSquare className="w-6 h-6 text-white" />
@@ -79,7 +91,13 @@ const ChatInterface = () => {
         <div className="flex items-center justify-between p-4 border-b border-gray-800/50 bg-gradient-to-r from-neon-blue/20 to-neon-purple/20">
           <div className="flex items-center space-x-2">
             <Bot className="w-5 h-5 text-neon-blue" />
-            <span className="font-medium text-white">AI Assistant</span>
+            <div className="flex flex-col">
+              <span className="font-medium text-white">AI Assistant</span>
+              <div className="flex items-center space-x-1">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-xs text-green-400">Online</span>
+              </div>
+            </div>
           </div>
           <Button
             variant="ghost"
@@ -132,7 +150,7 @@ const ChatInterface = () => {
                   : 'text-gray-400 hover:text-white'
               }`}
             >
-              {isVoiceEnabled ? <Mic className="w-4 h-4" /> : <MicOff className="w-4 h-4" />}
+              <PhoneCall className="w-4 h-4" />
             </Button>
             <Button
               onClick={handleSendMessage}
@@ -156,7 +174,7 @@ const ChatInterface = () => {
               </Badge>
             </div>
           </div>
-          <div className="text-right mt-2">
+          <div className="text-center mt-2">
             <div className="text-gray-500 text-xs">
               Powered by Chaste AI
             </div>

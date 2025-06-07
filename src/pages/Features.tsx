@@ -1,204 +1,192 @@
-
 import React from 'react';
+import Navigation from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Bot, ArrowLeft, Zap, Upload, Shield, BarChart3, Settings, MessageSquare, Globe, Smartphone, Database, Clock } from 'lucide-react';
+import { MessageSquare, Shield, BarChart3, Zap, Clock, Users, CheckCircle, Star, ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Features = () => {
-  const features = [
-    {
-      icon: Zap,
-      title: "Lightning Fast Setup",
-      description: "Deploy your AI assistant in under 10 minutes with our intuitive setup wizard.",
-      details: [
-        "One-click deployment to any website",
-        "Pre-built templates for common use cases", 
-        "Automatic code generation",
-        "No technical expertise required"
-      ]
-    },
-    {
-      icon: Upload,
-      title: "Smart Document Processing",
-      description: "Upload any document format and watch as our AI extracts knowledge automatically.",
-      details: [
-        "Support for PDFs, Word docs, text files",
-        "Automatic content extraction and indexing",
-        "Smart chunking for optimal retrieval",
-        "Real-time document updates"
-      ]
-    },
-    {
-      icon: Shield,
-      title: "Enterprise Security",
-      description: "Bank-level encryption and security protocols to protect your sensitive data.",
-      details: [
-        "End-to-end encryption",
-        "SOC 2 Type II compliance",
-        "GDPR compliant data handling",
-        "Regular security audits"
-      ]
-    },
-    {
-      icon: BarChart3,
-      title: "Advanced Analytics",
-      description: "Deep insights into customer interactions and satisfaction metrics.",
-      details: [
-        "Real-time conversation analytics",
-        "Customer satisfaction tracking",
-        "Performance optimization insights",
-        "Custom reporting dashboards"
-      ]
-    },
-    {
-      icon: Settings,
-      title: "Complete Customization",
-      description: "Tailor every aspect of your AI assistant to match your brand perfectly.",
-      details: [
-        "Custom branding and colors",
-        "Personality and tone configuration",
-        "Flexible widget positioning",
-        "Multi-language support"
-      ]
-    },
-    {
-      icon: MessageSquare,
-      title: "Intelligent Conversations",
-      description: "Context-aware responses that understand your business and customer needs.",
-      details: [
-        "Natural language understanding",
-        "Context retention across conversations",
-        "Smart escalation to human agents",
-        "Multi-turn conversation handling"
-      ]
-    },
-    {
-      icon: Globe,
-      title: "Multi-Channel Support",
-      description: "Deploy across websites, mobile apps, and messaging platforms seamlessly.",
-      details: [
-        "Website chat widgets",
-        "WhatsApp integration",
-        "Mobile SDK for apps",
-        "API for custom integrations"
-      ]
-    },
-    {
-      icon: Database,
-      title: "Knowledge Management",
-      description: "Centralized knowledge base with smart content organization and retrieval.",
-      details: [
-        "Automatic content categorization",
-        "Version control for documents",
-        "Bulk content management",
-        "Search and filter capabilities"
-      ]
-    },
-    {
-      icon: Clock,
-      title: "24/7 Availability",
-      description: "Your AI assistant never sleeps, providing instant support around the clock.",
-      details: [
-        "Always-on customer support",
-        "Instant response times",
-        "Global timezone coverage",
-        "Automatic fallback handling"
-      ]
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-gray-950 dark">
-      {/* Header */}
-      <header className="bg-gray-900/80 backdrop-blur-xl border-b border-gray-800/50 px-6 py-4">
-        <div className="container mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <Link to="/" className="flex items-center space-x-2 group">
-              <Bot className="w-8 h-8 text-neon-blue group-hover:animate-glow transition-all duration-300" />
-              <span className="text-2xl font-bold text-white font-display">Chaste AI</span>
-            </Link>
-            <Link to="/" className="inline-flex items-center text-neon-blue hover:text-neon-cyan text-sm transition-colors duration-300">
-              <ArrowLeft className="w-4 h-4 mr-1" />
-              Back to home
-            </Link>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Link to="/login">
-              <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-gray-800/50 border border-gray-700/50 hover:border-neon-blue/50 transition-all duration-300">
-                Login
-              </Button>
-            </Link>
-            <Link to="/signup">
-              <Button className="bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white shadow-lg hover:shadow-neon-blue/25 transition-all duration-300">
-                Start for Free
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      <div className="container mx-auto px-6 py-12">
+      <Navigation />
+      <div className="pt-20">
         {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl lg:text-5xl font-bold font-display text-white mb-4">
-            Powerful Features for <span className="bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple bg-clip-text text-transparent">Modern Support</span>
-          </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
-            Everything you need to create, deploy, and manage intelligent customer support that scales with your business
-          </p>
-          <Badge className="bg-gradient-to-r from-neon-blue/10 to-neon-purple/10 text-neon-blue border border-neon-blue/20 px-4 py-2">
-            ✨ No coding required
-          </Badge>
+        <div className="relative overflow-hidden pt-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div className="text-center">
+              <Badge className="mb-6 bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 text-neon-blue border border-neon-blue/30">
+                <Sparkles className="w-3 h-3 mr-1" />
+                Explore Our Powerful Features
+              </Badge>
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 font-display">
+                Unlock the Full Potential of AI Customer Support
+              </h1>
+              <p className="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+                Discover how our advanced features can transform your customer experience and streamline your support operations.
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {features.map((feature, index) => (
-            <Card key={index} className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300 group">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-gray-800/50 border border-gray-700/50 p-3 mb-4 group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
-                  <feature.icon className="w-6 h-6 text-neon-blue" />
-                </div>
-                <CardTitle className="text-white font-display group-hover:text-neon-blue transition-colors duration-300">
-                  {feature.title}
-                </CardTitle>
-                <CardDescription className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
-                  {feature.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  {feature.details.map((detail, detailIndex) => (
-                    <li key={detailIndex} className="text-sm text-gray-500 flex items-center">
-                      <div className="w-1.5 h-1.5 bg-neon-blue rounded-full mr-3 flex-shrink-0"></div>
-                      {detail}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Key Features Section */}
+        <div className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <Badge className="mb-4 bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 text-neon-blue border border-neon-blue/30">
+                Key Features
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-display">
+                Everything you need for exceptional customer support
+              </h2>
+              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                Powerful features designed to enhance your customer experience and streamline your support operations.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300 group">
+                <CardHeader>
+                  <MessageSquare className="w-8 h-8 text-neon-blue mb-2 group-hover:scale-110 transition-transform duration-300" />
+                  <CardTitle className="text-white">Instant Responses</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    AI-powered responses that understand context and provide accurate answers in real-time.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
+              <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-purple/30 transition-all duration-300 group">
+                <CardHeader>
+                  <Shield className="w-8 h-8 text-neon-purple mb-2 group-hover:scale-110 transition-transform duration-300" />
+                  <CardTitle className="text-white">Secure & Reliable</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Enterprise-grade security with 99.9% uptime guarantee to keep your business running smoothly.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
+              <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-cyan/30 transition-all duration-300 group">
+                <CardHeader>
+                  <BarChart3 className="w-8 h-8 text-neon-cyan mb-2 group-hover:scale-110 transition-transform duration-300" />
+                  <CardTitle className="text-white">Advanced Analytics</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Detailed insights into customer interactions, satisfaction rates, and performance metrics.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
+          </div>
+        </div>
+
+        {/* Advanced Features Section */}
+        <div className="py-20 bg-gray-900/30">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <Badge className="mb-4 bg-gradient-to-r from-neon-purple/20 to-neon-blue/20 text-neon-purple border border-neon-purple/30">
+                Advanced Features
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-display">
+                Take your customer support to the next level
+              </h2>
+              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                Explore our advanced features designed to provide personalized and efficient customer support.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300 group">
+                <CardHeader>
+                  <Zap className="w-8 h-8 text-neon-blue mb-2 group-hover:scale-110 transition-transform duration-300" />
+                  <CardTitle className="text-white">AI-Powered Automation</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Automate repetitive tasks and provide instant support with our AI-powered automation features.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="list-disc pl-5 text-gray-300">
+                    <li>Automated ticket routing</li>
+                    <li>Intelligent knowledge base suggestions</li>
+                    <li>Proactive customer engagement</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-purple/30 transition-all duration-300 group">
+                <CardHeader>
+                  <Clock className="w-8 h-8 text-neon-purple mb-2 group-hover:scale-110 transition-transform duration-300" />
+                  <CardTitle className="text-white">24/7 Availability</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Provide round-the-clock support with our AI-powered virtual assistants.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="list-disc pl-5 text-gray-300">
+                    <li>Instant responses at any time</li>
+                    <li>Multilingual support</li>
+                    <li>Consistent and reliable service</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-cyan/30 transition-all duration-300 group">
+                <CardHeader>
+                  <Users className="w-8 h-8 text-neon-cyan mb-2 group-hover:scale-110 transition-transform duration-300" />
+                  <CardTitle className="text-white">Personalized Support</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Deliver personalized support experiences with our advanced AI technology.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="list-disc pl-5 text-gray-300">
+                    <li>Customized responses based on customer data</li>
+                    <li>Sentiment analysis for empathetic support</li>
+                    <li>Personalized recommendations</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300 group">
+                <CardHeader>
+                  <Star className="w-8 h-8 text-neon-blue mb-2 group-hover:scale-110 transition-transform duration-300" />
+                  <CardTitle className="text-white">Proactive Engagement</CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Engage customers proactively and provide assistance before they even ask.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="list-disc pl-5 text-gray-300">
+                    <li>Automated welcome messages</li>
+                    <li>Personalized onboarding assistance</li>
+                    <li>Real-time support suggestions</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
 
         {/* CTA Section */}
-        <div className="text-center bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-cyan/10 rounded-2xl p-12 border border-neon-blue/20">
-          <h2 className="text-3xl font-bold font-display text-white mb-4">
-            Ready to experience these features?
-          </h2>
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-            Start your free trial today and see how Chaste AI can transform your customer support in minutes
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/signup">
-              <Button size="lg" className="bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white shadow-lg hover:shadow-neon-blue/25 transition-all duration-300">
-                Start for Free
-              </Button>
-            </Link>
-            <Button size="lg" variant="outline" className="border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800/50 hover:border-neon-blue/50 transition-all duration-300">
-              Schedule Demo
-            </Button>
+        <div className="py-20 bg-gradient-to-r from-neon-blue/10 via-neon-purple/10 to-neon-cyan/10">
+          <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-display">
+              Ready to unlock the full potential of AI customer support?
+            </h2>
+            <p className="text-xl text-gray-400 mb-8">
+              Join thousands of businesses already using Chaste AI to provide exceptional customer experiences.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/signup">
+                <Button className="bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue text-white px-8 py-3 text-lg shadow-lg hover:shadow-neon-blue/25 transition-all duration-300">
+                  Start Your Free Plan
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+              <Link to="/support">
+                <Button variant="outline" className="border-gray-700 text-gray-300 hover:text-white hover:border-neon-blue px-8 py-3 text-lg">
+                  Talk to Sales
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
