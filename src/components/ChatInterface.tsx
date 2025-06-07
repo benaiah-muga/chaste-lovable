@@ -101,7 +101,7 @@ const ChatInterface = () => {
               <div
                 className={`max-w-xs p-3 rounded-lg ${
                   msg.isBot
-                    ? 'bg-gray-800/50 text-gray-300 border-l-2 border-neon-blue'
+                    ? 'bg-gray-800/70 text-gray-300 border-l-2 border-neon-blue'
                     : 'bg-gradient-to-r from-neon-blue to-neon-purple text-white'
                 }`}
               >
@@ -112,28 +112,9 @@ const ChatInterface = () => {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Status indicators */}
-        <div className="px-4 py-2 border-t border-gray-800/50">
-          <div className="flex items-center justify-between text-xs">
-            <div className="flex items-center space-x-3">
-              <Badge className="bg-green-500/20 text-green-400 border border-green-500/30 px-2 py-1">
-                <div className="w-1.5 h-1.5 bg-green-400 rounded-full mr-1"></div>
-                Voice enabled
-              </Badge>
-              <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-1">
-                <Zap className="w-3 h-3 mr-1" />
-                RAG active
-              </Badge>
-            </div>
-            <div className="text-gray-500 text-xs">
-              Powered by Chaste AI
-            </div>
-          </div>
-        </div>
-
         {/* Input */}
         <div className="p-4 border-t border-gray-800/50">
-          <div className="flex space-x-2">
+          <div className="flex space-x-2 mb-3">
             <Input
               value={message}
               onChange={(e) => setMessage(e.target.value)}
@@ -160,6 +141,25 @@ const ChatInterface = () => {
             >
               <Send className="w-4 h-4" />
             </Button>
+          </div>
+
+          {/* Status indicators and branding */}
+          <div className="flex items-center justify-between text-xs">
+            <div className="flex items-center space-x-2">
+              <Badge className="bg-green-500/20 text-green-400 border border-green-500/30 px-2 py-1">
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full mr-1"></div>
+                Voice enabled
+              </Badge>
+              <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-1">
+                <Zap className="w-3 h-3 mr-1" />
+                RAG active
+              </Badge>
+            </div>
+          </div>
+          <div className="text-right mt-2">
+            <div className="text-gray-500 text-xs">
+              Powered by Chaste AI
+            </div>
           </div>
         </div>
       </div>
