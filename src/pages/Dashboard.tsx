@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Bot, BarChart3, Settings, Upload, Users, MessageSquare, Shield, LogOut, Sparkles, ArrowRight, Zap, TrendingUp } from 'lucide-react';
+import { Bot, BarChart3, Settings, Upload, Users, MessageSquare, Shield, LogOut, Sparkles, ArrowRight, Zap, TrendingUp, Star, Heart, Frown, Meh, Smile, ThumbsUp } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
@@ -17,7 +17,56 @@ const Dashboard = () => {
     documentsUploaded: 12,
     responseTime: '1.2s',
     satisfactionRate: '96%',
-    monthlyGrowth: '+24%'
+    monthlyGrowth: '+24%',
+    averageRating: 4.8,
+    totalRatings: 234
+  };
+
+  // Sample interaction data with ratings
+  const recentInteractions = [
+    {
+      id: 1,
+      customerName: 'John Doe',
+      message: 'How do I reset my password?',
+      response: 'You can reset your password by clicking on "Forgot Password" on the login page...',
+      rating: 5,
+      timestamp: '2 hours ago',
+      addedToKB: false
+    },
+    {
+      id: 2,
+      customerName: 'Jane Smith',
+      message: 'What are your business hours?',
+      response: 'Our business hours are Monday to Friday, 9 AM to 6 PM EST...',
+      rating: 4,
+      timestamp: '4 hours ago',
+      addedToKB: true
+    },
+    {
+      id: 3,
+      customerName: 'Mike Johnson',
+      message: 'How do I cancel my subscription?',
+      response: 'To cancel your subscription, please visit your account settings...',
+      rating: 3,
+      timestamp: '6 hours ago',
+      addedToKB: false
+    }
+  ];
+
+  const getRatingIcon = (rating: number) => {
+    switch (rating) {
+      case 5: return <ThumbsUp className="w-4 h-4 text-green-500" />;
+      case 4: return <Smile className="w-4 h-4 text-blue-500" />;
+      case 3: return <Meh className="w-4 h-4 text-yellow-500" />;
+      case 2: return <Frown className="w-4 h-4 text-orange-500" />;
+      case 1: return <Heart className="w-4 h-4 text-red-500" />;
+      default: return <Meh className="w-4 h-4 text-gray-500" />;
+    }
+  };
+
+  const addToKnowledgeBase = (interactionId: number) => {
+    // This would normally make an API call
+    console.log(`Adding interaction ${interactionId} to knowledge base`);
   };
 
   const handleStartOnboarding = () => {
@@ -42,6 +91,12 @@ const Dashboard = () => {
           </div>
           <div className="flex items-center space-x-4">
             <span className="text-sm text-gray-400">Acme Corp</span>
+            <Link to="/admin">
+              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white hover:bg-gray-800/50">
+                <Settings className="w-4 h-4 mr-2" />
+                Admin
+              </Button>
+            </Link>
             <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white hover:bg-gray-800/50">
               <LogOut className="w-4 h-4 mr-2" />
               Logout
@@ -113,7 +168,7 @@ const Dashboard = () => {
           )}
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300">
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-medium text-gray-400">Total Conversations</CardTitle>
@@ -133,24 +188,25 @@ const Dashboard = () => {
 
             <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-400">Active Users</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-400">Average Rating</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center space-x-2">
-                  <Users className="w-5 h-5 text-green-500" />
-                  <span className="text-2xl font-bold text-white">{stats.activeUsers}</span>
+                  <Star className="w-5 h-5 text-yellow-500" />
+                  <span className="text-2xl font-bold text-white">{stats.averageRating}</span>
+                  <span className="text-sm text-gray-400">({stats.totalRatings} ratings)</span>
                 </div>
               </CardContent>
             </Card>
 
             <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-400">Knowledge Documents</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-400">Active Users</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center space-x-2">
-                  <Upload className="w-5 h-5 text-purple-500" />
-                  <span className="text-2xl font-bold text-white">{stats.documentsUploaded}</span>
+                  <Users className="w-5 h-5 text-green-500" />
+                  <span className="text-2xl font-bold text-white">{stats.activeUsers}</span>
                 </div>
               </CardContent>
             </Card>
@@ -166,22 +222,48 @@ const Dashboard = () => {
                 </div>
               </CardContent>
             </Card>
-
-            <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-400">Satisfaction Rate</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center space-x-2">
-                  <TrendingUp className="w-5 h-5 text-emerald-500" />
-                  <span className="text-2xl font-bold text-white">{stats.satisfactionRate}</span>
-                </div>
-              </CardContent>
-            </Card>
           </div>
 
-          {/* Quick Actions */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          {/* Recent Interactions with Ratings */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50">
+              <CardHeader>
+                <CardTitle className="text-white">Recent Interactions & Ratings</CardTitle>
+                <CardDescription className="text-gray-400">Customer interactions with satisfaction ratings</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {recentInteractions.map((interaction) => (
+                  <div key={interaction.id} className="border border-gray-700/50 rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-medium text-white">{interaction.customerName}</span>
+                      <div className="flex items-center space-x-2">
+                        {getRatingIcon(interaction.rating)}
+                        <span className="text-sm text-gray-400">{interaction.timestamp}</span>
+                      </div>
+                    </div>
+                    <p className="text-sm text-gray-300 mb-2">{interaction.message}</p>
+                    <p className="text-xs text-gray-500 mb-3">{interaction.response}</p>
+                    <div className="flex items-center justify-between">
+                      <Badge className={interaction.addedToKB ? "bg-green-500/20 text-green-400" : "bg-gray-500/20 text-gray-400"}>
+                        {interaction.addedToKB ? "In Knowledge Base" : "Not in KB"}
+                      </Badge>
+                      {!interaction.addedToKB && (
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => addToKnowledgeBase(interaction.id)}
+                          className="text-neon-blue border-neon-blue/30 hover:bg-neon-blue/10"
+                        >
+                          Add to KB
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+
+            {/* Quick Actions */}
             <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50">
               <CardHeader>
                 <CardTitle className="text-white">Quick Actions</CardTitle>
@@ -200,30 +282,12 @@ const Dashboard = () => {
                   <Bot className="w-4 h-4 mr-2" />
                   Test Assistant
                 </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50">
-              <CardHeader>
-                <CardTitle className="text-white">Recent Activity</CardTitle>
-                <CardDescription className="text-gray-400">Latest interactions and updates</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="border-l-2 border-neon-blue pl-4">
-                  <p className="font-medium text-white">Document uploaded</p>
-                  <p className="text-gray-400 text-sm">FAQ.pdf added to knowledge base</p>
-                  <p className="text-xs text-gray-500">2 hours ago</p>
-                </div>
-                <div className="border-l-2 border-green-500 pl-4">
-                  <p className="font-medium text-white">45 new conversations</p>
-                  <p className="text-gray-400 text-sm">Customer support questions answered</p>
-                  <p className="text-xs text-gray-500">Today</p>
-                </div>
-                <div className="border-l-2 border-purple-500 pl-4">
-                  <p className="font-medium text-white">Assistant customized</p>
-                  <p className="text-gray-400 text-sm">Updated welcome message and branding</p>
-                  <p className="text-xs text-gray-500">Yesterday</p>
-                </div>
+                <Link to="/integrations">
+                  <Button className="w-full justify-start bg-gray-800/50 hover:bg-gray-700/50 text-white border border-gray-700/50 hover:border-neon-blue/50 transition-all duration-300" variant="outline">
+                    <Zap className="w-4 h-4 mr-2" />
+                    View Integrations
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </div>
@@ -253,6 +317,11 @@ const Dashboard = () => {
               </Button>
             </CardContent>
           </Card>
+
+          {/* Copyright Notice */}
+          <div className="mt-8 text-center">
+            <p className="text-sm text-gray-500">© 2025 Chaste AI. All rights reserved.</p>
+          </div>
         </main>
       </div>
     </div>

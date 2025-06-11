@@ -11,49 +11,72 @@ const Integrations = () => {
     {
       name: 'Zendesk',
       description: 'Seamlessly integrate with Zendesk for unified customer support workflows',
-      logo: '🎧',
+      logo: (
+        <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center">
+          <span className="text-white font-bold text-lg">Z</span>
+        </div>
+      ),
       status: 'coming-soon',
       features: ['Ticket creation', 'Agent handoff', 'Customer history sync', 'Automated routing']
     },
     {
       name: 'Odoo',
       description: 'Connect with Odoo CRM for comprehensive business management integration',
-      logo: '📊',
+      logo: (
+        <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center">
+          <span className="text-white font-bold text-lg">O</span>
+        </div>
+      ),
       status: 'coming-soon',
       features: ['Lead generation', 'Customer data sync', 'Sales pipeline integration', 'Activity tracking']
     },
     {
       name: 'Freshdesk',
       description: 'Integrate with Freshdesk to enhance your customer service capabilities',
-      logo: '🌟',
+      logo: (
+        <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+          <span className="text-white font-bold text-lg">F</span>
+        </div>
+      ),
       status: 'coming-soon',
       features: ['Multi-channel support', 'Agent collaboration', 'Knowledge base sync', 'Analytics integration']
     },
     {
       name: 'Salesforce',
       description: 'Connect with the world\'s leading CRM platform for enterprise solutions',
-      logo: '☁️',
+      logo: (
+        <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+          <span className="text-white font-bold text-lg">S</span>
+        </div>
+      ),
       status: 'coming-soon',
       features: ['Lead management', 'Opportunity tracking', 'Customer 360 view', 'Workflow automation']
     },
     {
       name: 'HubSpot',
       description: 'Integrate with HubSpot for inbound marketing and sales automation',
-      logo: '🚀',
+      logo: (
+        <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center">
+          <span className="text-white font-bold text-lg">H</span>
+        </div>
+      ),
       status: 'coming-soon',
       features: ['Contact management', 'Deal tracking', 'Marketing automation', 'Analytics dashboard']
     },
     {
       name: 'Slack',
       description: 'Get real-time notifications and manage customer interactions in Slack',
-      logo: '💬',
+      logo: (
+        <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
+          <span className="text-white font-bold text-lg">#</span>
+        </div>
+      ),
       status: 'coming-soon',
       features: ['Real-time alerts', 'Team collaboration', 'Quick responses', 'Status updates']
     }
   ];
 
   const handleComingSoon = (integrationName: string) => {
-    // This could trigger a toast notification or modal
     alert(`${integrationName} integration is coming soon! We'll notify you when it's ready.`);
   };
 
@@ -128,7 +151,7 @@ const Integrations = () => {
             <Card key={index} className="bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 hover:border-neon-blue/30 transition-all duration-300 group">
               <CardHeader>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="text-4xl">{integration.logo}</div>
+                  {integration.logo}
                   <Badge className="bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">
                     <Clock className="w-3 h-3 mr-1" />
                     Coming Soon
