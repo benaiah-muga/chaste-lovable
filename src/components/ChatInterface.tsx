@@ -74,18 +74,21 @@ const ChatInterface = () => {
         <div className="fixed bottom-6 right-6 z-50">
           <Button
             onClick={() => setIsOpen(true)}
-            className="w-16 h-16 rounded-2xl bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue shadow-lg transition-all duration-300 relative overflow-hidden p-0 border-2 border-white/20"
+            className="w-16 h-16 rounded-xl bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue shadow-lg transition-all duration-300 relative overflow-hidden p-0 border-2 border-white/20 animate-bounce"
             size="lg"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/50 to-neon-purple/50 rounded-2xl blur-md animate-pulse"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/50 to-neon-purple/50 rounded-xl blur-md animate-pulse"></div>
             {chatBubbleImage ? (
               <img 
                 src={chatBubbleImage} 
                 alt="Chat Assistant" 
-                className="w-10 h-10 object-contain z-10 relative"
+                className="w-10 h-10 object-cover rounded-lg z-10 relative animate-wave"
+                style={{
+                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))'
+                }}
               />
             ) : (
-              <MessageSquare className="w-6 h-6 text-white z-10 relative" />
+              <MessageSquare className="w-6 h-6 text-white z-10 relative animate-wave" />
             )}
           </Button>
         </div>
@@ -108,7 +111,10 @@ const ChatInterface = () => {
                 <img 
                   src={chatBubbleImage} 
                   alt="AI Assistant" 
-                  className="w-8 h-8 object-contain rounded-lg"
+                  className="w-8 h-8 object-cover rounded-lg border border-gray-600/50"
+                  style={{
+                    filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.2))'
+                  }}
                 />
               ) : (
                 <Bot className="w-5 h-5 text-neon-blue" />
