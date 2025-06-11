@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Bot, ArrowLeft, Book, Settings, Upload, MessageSquare, BarChart3, Shield, Users, Globe } from 'lucide-react';
+import { Bot, ArrowLeft, Book, Settings, Upload, MessageSquare, BarChart3, Shield, Users, Globe, Code, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Documentation = () => {
@@ -42,8 +42,32 @@ const Documentation = () => {
       ]
     },
     {
+      icon: Code,
+      title: "API Documentation",
+      description: "Integrate Chaste AI into your applications",
+      topics: [
+        "REST API endpoints",
+        "Authentication",
+        "SDKs and libraries",
+        "Rate limits"
+      ],
+      link: "/api-docs"
+    },
+    {
+      icon: Zap,
+      title: "Integrations",
+      description: "Connect with CRM systems and other platforms",
+      topics: [
+        "Zendesk integration",
+        "Odoo CRM sync",
+        "Freshdesk support",
+        "Custom webhooks"
+      ],
+      link: "/integrations"
+    },
+    {
       icon: Globe,
-      title: "Integration",
+      title: "Deployment",
       description: "Deploy your chatbot across different platforms",
       topics: [
         "Website embedding",
@@ -137,7 +161,7 @@ const Documentation = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2">
+                <ul className="space-y-2 mb-4">
                   {section.topics.map((topic, topicIndex) => (
                     <li key={topicIndex} className="text-sm text-gray-500 flex items-center hover:text-neon-blue transition-colors duration-200 cursor-pointer">
                       <div className="w-1.5 h-1.5 bg-neon-blue rounded-full mr-3 flex-shrink-0"></div>
@@ -145,6 +169,13 @@ const Documentation = () => {
                     </li>
                   ))}
                 </ul>
+                {section.link && (
+                  <Link to={section.link}>
+                    <Button size="sm" className="w-full bg-gradient-to-r from-neon-blue to-neon-purple hover:from-neon-cyan hover:to-neon-blue">
+                      Explore {section.title}
+                    </Button>
+                  </Link>
+                )}
               </CardContent>
             </Card>
           ))}
@@ -212,6 +243,15 @@ const Documentation = () => {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-800/50 bg-gray-900/30 px-6 py-8">
+        <div className="container mx-auto text-center">
+          <p className="text-gray-500 text-sm">
+            © 2025 Chaste AI. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
