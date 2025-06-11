@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -22,6 +21,7 @@ const CustomizeDashboard = () => {
     secondaryColor: '#8b5cf6',
     logoUrl: '',
     avatarUrl: '',
+    chatBubbleImage: '/lovable-uploads/66785ad5-7976-4832-b6ab-07e914385877.png',
     position: 'bottom-right',
     size: 'medium',
     showBranding: true,
@@ -52,6 +52,18 @@ const CustomizeDashboard = () => {
       toast({
         title: "Logo uploaded!",
         description: "Your logo has been updated.",
+      });
+    }
+  };
+
+  const handleChatBubbleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      handleConfigChange('chatBubbleImage', url);
+      toast({
+        title: "Chat bubble image uploaded!",
+        description: "Your chat bubble image has been updated.",
       });
     }
   };
@@ -188,6 +200,29 @@ const CustomizeDashboard = () => {
                               <div className="text-center">
                                 <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                                 <p className="text-gray-400">Upload your logo</p>
+                              </div>
+                            )}
+                          </label>
+                        </div>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="chatBubble" className="text-gray-300">Chat Bubble Image</Label>
+                        <div className="mt-1">
+                          <input
+                            type="file"
+                            id="chatBubble"
+                            accept="image/*"
+                            onChange={handleChatBubbleUpload}
+                            className="hidden"
+                          />
+                          <label htmlFor="chatBubble" className="flex items-center justify-center w-full h-32 border-2 border-dashed border-gray-700 rounded-lg cursor-pointer hover:border-neon-blue/50 transition-colors">
+                            {config.chatBubbleImage ? (
+                              <img src={config.chatBubbleImage} alt="Chat Bubble" className="h-20 object-contain" />
+                            ) : (
+                              <div className="text-center">
+                                <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                                <p className="text-gray-400">Upload chat bubble image</p>
                               </div>
                             )}
                           </label>
@@ -404,20 +439,28 @@ const CustomizeDashboard = () => {
                   <div className="bg-gray-800/30 p-4 rounded-lg">
                     {/* Chat Preview */}
                     <div 
-                      className="bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 rounded-lg shadow-lg"
+                      className="bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 rounded-2xl shadow-lg"
                       style={{ borderColor: config.primaryColor + '40' }}
                     >
                       {/* Chat Header */}
                       <div 
-                        className="p-3 border-b border-gray-700/50 flex items-center space-x-2"
+                        className="p-3 border-b border-gray-700/50 flex items-center space-x-2 rounded-t-2xl"
                         style={{ backgroundColor: config.primaryColor + '20' }}
                       >
-                        <Avatar className="w-8 h-8">
-                          <AvatarImage src={config.avatarUrl} />
-                          <AvatarFallback style={{ backgroundColor: config.primaryColor }}>
-                            <Bot className="w-4 h-4 text-white" />
-                          </AvatarFallback>
-                        </Avatar>
+                        {config.chatBubbleImage ? (
+                          <img 
+                            src={config.chatBubbleImage} 
+                            alt="AI Assistant" 
+                            className="w-8 h-8 object-contain rounded-lg"
+                          />
+                        ) : (
+                          <Avatar className="w-8 h-8">
+                            <AvatarImage src={config.avatarUrl} />
+                            <AvatarFallback style={{ backgroundColor: config.primaryColor }}>
+                              <Bot className="w-4 h-4 text-white" />
+                            </AvatarFallback>
+                          </Avatar>
+                        )}
                         <div>
                           <p className="text-white text-sm font-medium">{config.botName}</p>
                           <div className="flex items-center space-x-1">
@@ -430,13 +473,21 @@ const CustomizeDashboard = () => {
                       {/* Chat Messages */}
                       <div className="p-3 space-y-3 max-h-40 overflow-y-auto">
                         <div className="flex space-x-2">
-                          <Avatar className="w-6 h-6">
-                            <AvatarFallback style={{ backgroundColor: config.primaryColor }}>
-                              <Bot className="w-3 h-3 text-white" />
-                            </AvatarFallback>
-                          </Avatar>
+                          {config.chatBubbleImage ? (
+                            <img 
+                              src={config.chatBubbleImage} 
+                              alt="AI Assistant" 
+                              className="w-6 h-6 object-contain rounded"
+                            />
+                          ) : (
+                            <Avatar className="w-6 h-6">
+                              <AvatarFallback style={{ backgroundColor: config.primaryColor }}>
+                                <Bot className="w-3 h-3 text-white" />
+                              </AvatarFallback>
+                            </Avatar>
+                          )}
                           <div 
-                            className="bg-gray-800/50 p-2 rounded-lg text-sm text-gray-300 max-w-[200px]"
+                            className="bg-gray-800/50 p-2 rounded-xl text-sm text-gray-300 max-w-[200px]"
                             style={{ borderLeft: `3px solid ${config.primaryColor}` }}
                           >
                             {config.welcomeMessage}
@@ -445,16 +496,16 @@ const CustomizeDashboard = () => {
                       </div>
 
                       {/* Chat Input */}
-                      <div className="p-3 border-t border-gray-700/50">
+                      <div className="p-3 border-t border-gray-700/50 rounded-b-2xl">
                         <div className="flex space-x-2">
                           <input
                             type="text"
                             placeholder="Type your message..."
-                            className="flex-1 bg-gray-800/50 border border-gray-700 rounded px-2 py-1 text-sm text-white"
+                            className="flex-1 bg-gray-800/50 border border-gray-700 rounded-xl px-2 py-1 text-sm text-white"
                             readOnly
                           />
                           <button 
-                            className="px-3 py-1 rounded text-white text-sm"
+                            className="px-3 py-1 rounded-xl text-white text-sm"
                             style={{ backgroundColor: config.primaryColor }}
                           >
                             Send
@@ -462,6 +513,26 @@ const CustomizeDashboard = () => {
                         </div>
                         {config.showBranding && (
                           <p className="text-xs text-gray-500 text-center mt-2">Powered by Chaste AI</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Chat Bubble Preview */}
+                    <div className="mt-4 flex justify-end">
+                      <div 
+                        className="w-16 h-16 rounded-2xl bg-gradient-to-r from-neon-blue to-neon-purple shadow-lg flex items-center justify-center border-2 border-white/20"
+                        style={{ 
+                          background: `linear-gradient(to right, ${config.primaryColor}, ${config.secondaryColor})` 
+                        }}
+                      >
+                        {config.chatBubbleImage ? (
+                          <img 
+                            src={config.chatBubbleImage} 
+                            alt="Chat Bubble" 
+                            className="w-10 h-10 object-contain"
+                          />
+                        ) : (
+                          <MessageSquare className="w-6 h-6 text-white" />
                         )}
                       </div>
                     </div>

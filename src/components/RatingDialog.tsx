@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -15,11 +14,11 @@ const RatingDialog = ({ isOpen, onClose }: RatingDialogProps) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const ratings = [
-    { value: 1, emoji: '😞', label: 'Very Poor' },
-    { value: 2, emoji: '😕', label: 'Poor' },
-    { value: 3, emoji: '😐', label: 'Average' },
+    { value: 5, emoji: '😍', label: 'Excellent' },
     { value: 4, emoji: '😊', label: 'Good' },
-    { value: 5, emoji: '😍', label: 'Excellent' }
+    { value: 3, emoji: '😐', label: 'Average' },
+    { value: 2, emoji: '😕', label: 'Poor' },
+    { value: 1, emoji: '😞', label: 'Very Poor' }
   ];
 
   const handleSubmit = () => {
